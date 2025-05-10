@@ -13,8 +13,8 @@ public class M1ProjectTest : MonoBehaviour
     public float velocityBattle = 1f;
 
     //[Header("Armi")] // Creo le mie Armi
-    //public Wepon weponA;
-    //public Wepon weponB;
+    //public Weapon weponA;
+    //public Weapon weponB;
 
     [Header("Eroi")] // Creo i miei Hero
     public Hero heroA;
@@ -27,8 +27,8 @@ public class M1ProjectTest : MonoBehaviour
     {
         if (isPrestabilito) //Si mettono già i settaggi per le Wepons e Heros, si puo anche non fare
         {
-            Wepon weponA = new Wepon("Thunger", Wepon.DamageType.Physical, Element.Fire, new Stats(1, 5, 2, 60, 1, 4, 6));
-            Wepon weponB = new Wepon("Loca", Wepon.DamageType.Magical, Element.Lightning, new Stats(1, 5, 2, 60, 1, 4, 6));
+            Weapon weponA = new Weapon("Thunger", Weapon.DamageType.Physical, Element.Fire, new Stats(1, 5, 2, 60, 1, 4, 6));
+            Weapon weponB = new Weapon("Loca", Weapon.DamageType.Magical, Element.Lightning, new Stats(1, 5, 2, 60, 1, 4, 6));
 
             heroA = new Hero("Giggino", 100, new Stats(25, 5, 2, 60, 15, 4, 6), Element.Fire, Element.Ice, weponA);
             heroB = new Hero("Jim", 100, new Stats(25, 5, 2, 60, 15, 4, 6), Element.Lightning, Element.Fire, weponB);
@@ -72,7 +72,7 @@ public class M1ProjectTest : MonoBehaviour
 
                 //Vediamo se il difensore è Debole o restistente
                 if (GameFormulas.HasElementAdvantage(a.wepon.element, b)) { Debug.Log("Weak"); }
-                if (GameFormulas.HasElementDisDadvantage(a.wepon.element, b)) {Debug.Log("Resisten"); }
+                if (GameFormulas.HasElementDisadvantage(a.wepon.element, b)) {Debug.Log("Resisten"); }
 
                 b.TakeDamage(danno);
             }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable] // Statistiche condivise tra Hero e Wepon
+[System.Serializable] // Statistiche condivise tra Hero e Weapon
 public struct Stats 
 {
     public int atk;
@@ -25,7 +25,7 @@ public struct Stats
         this.eva = eva;
     }
 
-    public static Stats Sum(Stats a, Stats b) // Prendiamo Tutte le statistiche di uno (Hero) le sommiamo con le statistiche di un altro (Wepon) e otteniamo TotStatistiche  
+    public static Stats Sum(Stats a, Stats b) // Prendiamo Tutte le statistiche di uno (Hero) le sommiamo con le statistiche di un altro (Weapon) e otteniamo TotStatistiche  
     {
        int atk = a.atk + b.atk;
        int def = a.def + b.def;

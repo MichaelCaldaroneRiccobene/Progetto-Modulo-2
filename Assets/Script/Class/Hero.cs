@@ -28,7 +28,7 @@ public class Hero
     }
 
     [SerializeField] private Element _resistance;
-    public Element resistence //inserisce la resistenza all'elemento
+    public Element resistance //inserisce la resistenza all'elemento
     {
         get => _resistance;
         set => _resistance = value;
@@ -41,15 +41,15 @@ public class Hero
         set => _weakness = value;
     }
 
-    [SerializeField] private Wepon _wepon;
-    public Wepon wepon // inserisce che tipo di wepon ha
+    [SerializeField] private Weapon _wepon;
+    public Weapon wepon // inserisce che tipo di wepon ha
     {
         get => _wepon;
         set => _wepon = value;
     }
 
 
-    public Hero(string nameHero, int hpHero, Stats basicStats, Element resistence, Element weakness, Wepon wepon) // THE Costruttore
+    public Hero(string nameHero, int hpHero, Stats basicStats, Element resistence, Element weakness, Weapon wepon) // THE Costruttore
     {
        _name = nameHero;
        _hp = SetHP(hpHero);
