@@ -5,8 +5,8 @@ using UnityEngine;
 
 public static class GameFormulas
 {
-
-    public static bool HasElementAdvantage(Element attkElement, Hero defender) // Prende Elemento Spada, e debolezza Hero
+    // Prende Elemento Spada, e debolezza Hero
+    public static bool HasElementAdvantage(Element attkElement, Hero defender)
     {
         if (attkElement == defender.weakness)
         {
@@ -15,7 +15,8 @@ public static class GameFormulas
         else { return false; }
     }
 
-    public static bool HasElementDisadvantage(Element attkElement, Hero defender)// Prende Elemento Spada, e resistenza Hero
+    // Prende Elemento Spada, e resistenza Hero
+    public static bool HasElementDisadvantage(Element attkElement, Hero defender)
     {
         if (attkElement == defender.resistance)
         {
@@ -24,20 +25,23 @@ public static class GameFormulas
         else { return false; }
     }
 
-    public static float EvaluateElementModifier(Element attkElement, Hero defender)//Guarda se bisogna moltiplicare o dimezzare il danno
+    //Guarda se bisogna moltiplicare o dimezzare il danno
+    public static float EvaluateElementModifier(Element attkElement, Hero defender)
     {
-        if (HasElementAdvantage(attkElement, defender))     return 1.5f;
-        if (HasElementDisadvantage(attkElement, defender))  return 0.5f;
-                                                            return 1;
+        if (HasElementAdvantage(attkElement, defender)) return 1.5f;
+        if (HasElementDisadvantage(attkElement, defender)) return 0.5f;
+        return 1;
     }
 
-    public static bool HasHit(Stats attacker, Stats defender)//Controlla se si colpisce l'altro Hero 
+    //Controlla se si colpisce l'altro Hero 
+    public static bool HasHit(Stats attacker, Stats defender)
     {
         float hitChance = attacker.aim - defender.eva;
 
         float randomaChance = UnityEngine.Random.Range(0, 100);
-
-        if (hitChance > randomaChance) // Es HitChance e 60 > a Es randomChache 55 allora si colpisce se no niente 
+        //Debug.Log("Attaker Aim " + attacker.aim + " Defender Eva " + defender.eva + " Hit Chance " + hitChance + " RandomChance " + randomaChance);
+        // Es HitChance e 60 > a Es randomChache 55 allora si colpisce se no niente 
+        if (hitChance > randomaChance) 
         {
             return true;
         }
@@ -48,7 +52,8 @@ public static class GameFormulas
         }
     }
 
-    public static bool IsCrit(int criticValue)// Controlla se si fa un critico 
+    // Controlla se si fa un critico 
+    public static bool IsCrit(int criticValue)
     {
         float randomaChance = UnityEngine.Random.Range(0, 100);
         //Debug.Log("Critico " +  criticValue + " Possibilita " + randomaChance);
@@ -64,26 +69,37 @@ public static class GameFormulas
         }
     }
 
-    public static int CalculateDamage(Hero attacker, Hero defender) // Si calcola il Danno
+    // Si calcola il Danno
+    public static int CalculateDamage(Hero attacker, Hero defender) 
     {
-        Stats newStatsAttacker = Stats.Sum(attacker.baseStats, attacker.wepon.bonusStats);//Statistiche degli Hero sommati alle Weapon
-        Stats newStatsDefender = Stats.Sum(defender.baseStats, defender.wepon.bonusStats);
 
-        float risultatoAttaco = AttMenoDif(attacker.wepon.damageType, newStatsAttacker, newStatsDefender); // Che danno si applica e come ci si difende
+        //Statistiche degli Hero sommati alle Weapon
+        Stats newStatsAttacker = Stats.Sum(attacker.baseStats, attacker.weapon.bonusStats);
+        Stats newStatsDefender = Stats.Sum(defender.baseStats, defender.weapon.bonusStats);
 
-        float dannoElemet = EvaluateElementModifier(attacker.wepon.element, defender);//Il danno viene radoppiato o dimezzato o rimane normale 
+        // Che danno si applica e come ci si difende
+        float risultatoAttaco = AttMenoDif(attacker.weapon.damageType, newStatsAttacker, newStatsDefender);
+        //Debug.Log(" Riusultato Danno " + risultatoAttaco);
+
+        //Il danno viene radoppiato o dimezzato o rimane normale 
+        float dannoElemet = EvaluateElementModifier(attacker.weapon.element, defender);
         risultatoAttaco *= dannoElemet;
 
-        bool isCrit = IsCrit(newStatsAttacker.crt);// vediamo se è un critico 
+        // vediamo se è un critico 
+        bool isCrit = IsCrit(newStatsAttacker.crt);
 
-        if (isCrit) { risultatoAttaco *= 2; } // se si si radoppia 
-        if (risultatoAttaco < 0) { return 0; } //se è minore di 0 si mette 0
+        // se si si radoppia 
+        if (isCrit) { risultatoAttaco *= 2; }
+        //se è minore di 0 si mette 0
+        if (risultatoAttaco < 0) { return 0; } 
 
         int risulAttck = Mathf.FloorToInt(risultatoAttaco);
-        return risulAttck; //Si riporta il risultato dell'Attacco
+        //Si riporta il risultato dell'Attacco
+        return risulAttck; 
     }
 
-    static float AttMenoDif(Weapon.DamageType damage, Stats attk, Stats def) // Funzione che vede come applicare il danno guardando come attacca l'attacante e come deve rispondere il difensore
+    // Funzione che vede come applicare il danno guardando come attacca l'attacante e come deve rispondere il difensore
+    static float AttMenoDif(Weapon.DamageType damage, Stats attk, Stats def) 
     {
         if (damage == Weapon.DamageType.Physical)
         {

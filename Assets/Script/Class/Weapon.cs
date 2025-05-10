@@ -27,14 +27,14 @@ public class Weapon
     }
 
     [SerializeField] private Element _element;
-    public Element element //Inserisce l'element alla wepon
+    public Element element //Inserisce l'element alla weapon
     {
         get => _element;
         set => _element = value;
     }
 
-    [SerializeField] private Stats _bonusStats; 
-    public Stats bonusStats // inserisce le statistische alla wepon
+    [SerializeField] private Stats _bonusStats;
+    public Stats bonusStats // inserisce le statistische alla weapon
     {
         get => _bonusStats;
         set => _bonusStats = value;

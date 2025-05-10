@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class Hero 
+public class Hero
 {
 
     [SerializeField] private string _name;
@@ -41,22 +41,22 @@ public class Hero
         set => _weakness = value;
     }
 
-    [SerializeField] private Weapon _wepon;
-    public Weapon wepon // inserisce che tipo di wepon ha
+    [SerializeField] private Weapon _weapon;
+    public Weapon weapon // inserisce che tipo di weapon ha
     {
-        get => _wepon;
-        set => _wepon = value;
+        get => _weapon;
+        set => _weapon = value;
     }
 
 
     public Hero(string nameHero, int hpHero, Stats basicStats, Element resistence, Element weakness, Weapon wepon) // THE Costruttore
     {
-       _name = nameHero;
-       _hp = SetHP(hpHero);
-       _baseStats = basicStats;
-       _resistance = resistence;
-       _weakness = weakness;
-       _wepon = wepon;
+        _name = nameHero;
+        _hp = SetHP(hpHero);
+        _baseStats = basicStats;
+        _resistance = resistence;
+        _weakness = weakness;
+        _weapon = wepon;
     }
 
     public void AddHP(int amount) // Mettiamo Gli Hp sia positivi sia negativi al player 
@@ -70,7 +70,7 @@ public class Hero
     }
     public bool IsAlive() // Si controlla che Hero sia ancora vivo, Si se a almeno più di 1HP
     {
-        if(_hp > 0)
+        if (_hp > 0)
         {
             return true;
         }
@@ -79,7 +79,7 @@ public class Hero
     int SetHP(int amount) //Prendiamo Gli amount di AddHp e li mettiamo se positivi (100 + 5 = 105) se negativi (100-5 = 95)
     {
         _hp = amount;
-        if(_hp < 0) // controlliamo se scende sotto lo zero, se si impostiamo manualmente noi gli HP e li si mette a 0
+        if (_hp < 0) // controlliamo se scende sotto lo zero, se si impostiamo manualmente noi gli HP e li si mette a 0
         {
             _hp = 0;
         }

@@ -27,24 +27,29 @@ public class M1ProjectTest : MonoBehaviour
     {
         if (isPrestabilito) //Si mettono già i settaggi per le Wepons e Heros, si puo anche non fare
         {
-            Weapon weponA = new Weapon("Thunger", Weapon.DamageType.Physical, Element.Fire, new Stats(1, 5, 2, 60, 1, 4, 6));
-            Weapon weponB = new Weapon("Loca", Weapon.DamageType.Magical, Element.Lightning, new Stats(1, 5, 2, 60, 1, 4, 6));
+            Weapon weponA = new Weapon("Thunger", Weapon.DamageType.Physical, Element.Fire, new Stats(22, 13, 4, 18, 13, 27, 17));
+            Weapon weponB = new Weapon("Loca", Weapon.DamageType.Magical, Element.Lightning, new Stats(22, 11, 4, 18, 13, 27, 17));
 
-            heroA = new Hero("Giggino", 100, new Stats(25, 5, 2, 60, 15, 4, 6), Element.Fire, Element.Ice, weponA);
-            heroB = new Hero("Jim", 100, new Stats(25, 5, 2, 60, 15, 4, 6), Element.Lightning, Element.Fire, weponB);
+            heroA = new Hero("Giggino", 100, new Stats(20, 13, 4, 20, 15, 27, 17), Element.Fire, Element.Ice, weponA);
+            heroB = new Hero("Jim", 100, new Stats(20, 13, 4, 18, 13, 27, 17), Element.Lightning, Element.Fire, weponB);
         }
 
-        Stats statsCombo1 = Stats.Sum(heroA.baseStats, heroA.wepon.bonusStats); // Si sommano le statistiche dell'Hero con le statistiche dell wepon
-        Stats statsCombo2 = Stats.Sum(heroB.baseStats, heroB.wepon.bonusStats);
+        // Si sommano le statistiche dell'Hero con le statistiche dell wepon
+        Stats statsCombo1 = Stats.Sum(heroA.baseStats, heroA.weapon.bonusStats); 
+        Stats statsCombo2 = Stats.Sum(heroB.baseStats, heroB.weapon.bonusStats);
 
-        AttackFirst(statsCombo1, statsCombo2, heroA, heroB);//Decide chi attacca per primo
+        //Decide chi attacca per primo
+        AttackFirst(statsCombo1, statsCombo2, heroA, heroB);
 
-        if(isSlow && isAutomatic) StartCoroutine(SlowBattle(hero1, hero2));//Combattimento Per nonneti 
+        //Combattimento Lento
+        if (isSlow && isAutomatic) StartCoroutine(SlowBattle(hero1, hero2));
     }
 
     private void Update()
     {
-        if (!isSlow) if (isAutomatic) { Attacco(hero1, hero2); } else if (Input.GetKeyDown(KeyCode.Space)) { Attacco(hero1, hero2); } // Avviene L'attacco in modo automatico o manuale
+        // Avviene L'attacco in modo automatico o manuale
+        if (!isSlow) if (isAutomatic) { Attacco(hero1, hero2); } 
+        else if (Input.GetKeyDown(KeyCode.Space)) { Attacco(hero1, hero2); }
     }
     void Attacco(Hero a, Hero b)
     {
@@ -56,29 +61,28 @@ public class M1ProjectTest : MonoBehaviour
     }
     void GoAttack(Hero a, Hero b)
     {
-        if (a.IsAlive() && b.IsAlive()) // Controlla che tutti e due siano vivi prima di fare il codice 
+        // Controlla che tutti e due siano vivi prima di fare il codice 
+        if (a.IsAlive() && b.IsAlive()) 
         {
-            Debug.Log("Attaccante " + a.name + " Attacca con elemento " + a.wepon.element + " Difensore " + b.name + " Debolezza " + b.weakness);
+            Debug.Log("Attaccante " + a.name + " Attacca con elemento " + a.weapon.element + " Difensore " + b.name + " Debolezza " + b.weakness);
 
-            Stats statsCombo1 = Stats.Sum(a.baseStats, a.wepon.bonusStats);
-            Stats statsCombo2 = Stats.Sum(b.baseStats, b.wepon.bonusStats);
+            Stats statsCombo1 = Stats.Sum(a.baseStats, a.weapon.bonusStats);
+            Stats statsCombo2 = Stats.Sum(b.baseStats, b.weapon.bonusStats);
 
             //Solo se colpice da il danno
             if (GameFormulas.HasHit(statsCombo1, statsCombo2))
             {
-                int danno = (GameFormulas.CalculateDamage(a, b));//Calcola il danno base che L'attaccante dovra fare al Difensore
+                //Calcola il danno base che L'attaccante dovra fare al Difensore
+                int danno = (GameFormulas.CalculateDamage(a, b));
 
-                Debug.Log("Danno Ricevuto Base " + danno);
+                Debug.Log("Danno Ricevuto Base " + danno + " Salute Difensore " + b.hp);
 
                 //Vediamo se il difensore è Debole o restistente
-                if (GameFormulas.HasElementAdvantage(a.wepon.element, b)) { Debug.Log("Weak"); }
-                if (GameFormulas.HasElementDisadvantage(a.wepon.element, b)) {Debug.Log("Resisten"); }
+                if (GameFormulas.HasElementAdvantage(a.weapon.element, b)) { Debug.Log("Weak"); }
+                if (GameFormulas.HasElementDisadvantage(a.weapon.element, b)) { Debug.Log("Resisten"); }
 
                 b.TakeDamage(danno);
             }
-
-
-
             //Il difensore non ha più il danno quindi l'attaccante vince 
             if (!b.IsAlive())
             {
@@ -87,13 +91,13 @@ public class M1ProjectTest : MonoBehaviour
             }
         }
     }
-    void AttackFirst(Stats a, Stats b,Hero z,Hero y)
+    void AttackFirst(Stats a, Stats b, Hero z, Hero y)
     {
-        if (a.spd >= b.spd) 
+        if (a.spd >= b.spd)
         {
             hero1 = z; hero2 = y;
         }
-        else 
+        else
         {
             hero1 = y; hero2 = z;
         }
@@ -101,13 +105,15 @@ public class M1ProjectTest : MonoBehaviour
 
     IEnumerator SlowBattle(Hero a, Hero b)
     {
-        yield return new WaitForSeconds(velocityBattle); // Aspetta un secondo prima di fare una determinata azione
+        // Aspetta un secondo prima di fare una determinata azione
+        yield return new WaitForSeconds(velocityBattle); 
         // Inizio Attacco 
         GoAttack(a, b);
         yield return new WaitForSeconds(velocityBattle);
         // Secondo Attacco
         GoAttack(b, a);
 
-        StartCoroutine(SlowBattle(a, b)); //Richiama se stesso in un ciclo infinito di lotta finche questo scritp non viene disabilitato 
+        //Richiama se stesso in un ciclo infinito di lotta finche questo scritp non viene disabilitato 
+        StartCoroutine(SlowBattle(a, b)); 
     }
 }
