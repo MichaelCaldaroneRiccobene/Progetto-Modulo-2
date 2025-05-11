@@ -17,7 +17,7 @@ public class Hero
     [SerializeField] private int _hp;
     public int Hp // inserisce HP Hero
     {
-        get => _hp = Mathf.Max(0, _hp); //Nell'inspector se si mette un valore inferiore a 0 lo mettera all'inizio del avvio a 0
+        get => _hp;
         set => _hp = Mathf.Max(0,value);
     }
 
