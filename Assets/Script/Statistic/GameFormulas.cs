@@ -8,7 +8,7 @@ public static class GameFormulas
     // Prende Elemento Spada, e debolezza Hero
     public static bool HasElementAdvantage(Element attkElement, Hero defender)
     {
-        if (attkElement == defender.weakness)
+        if (attkElement == defender.Weakness)
         {
             return true;
         }
@@ -18,7 +18,7 @@ public static class GameFormulas
     // Prende Elemento Spada, e resistenza Hero
     public static bool HasElementDisadvantage(Element attkElement, Hero defender)
     {
-        if (attkElement == defender.resistance)
+        if (attkElement == defender.Resistance)
         {
             return true;
         }
@@ -72,17 +72,16 @@ public static class GameFormulas
     // Si calcola il Danno
     public static int CalculateDamage(Hero attacker, Hero defender) 
     {
-
         //Statistiche degli Hero sommati alle Weapon
-        Stats newStatsAttacker = Stats.Sum(attacker.baseStats, attacker.weapon.bonusStats);
-        Stats newStatsDefender = Stats.Sum(defender.baseStats, defender.weapon.bonusStats);
+        Stats newStatsAttacker = Stats.Sum(attacker.BaseStats, attacker.Weapon.BonusStats);
+        Stats newStatsDefender = Stats.Sum(defender.BaseStats, defender.Weapon.BonusStats);
 
         // Che danno si applica e come ci si difende
-        float risultatoAttaco = AttMenoDif(attacker.weapon.damageType, newStatsAttacker, newStatsDefender);
+        float risultatoAttaco = AttMenoDif(attacker.Weapon.damageType, newStatsAttacker, newStatsDefender);
         //Debug.Log(" Riusultato Danno " + risultatoAttaco);
 
         //Il danno viene radoppiato o dimezzato o rimane normale 
-        float dannoElemet = EvaluateElementModifier(attacker.weapon.element, defender);
+        float dannoElemet = EvaluateElementModifier(attacker.Weapon.Element, defender);
         risultatoAttaco *= dannoElemet;
 
         // vediamo se è un critico 
@@ -111,7 +110,6 @@ public static class GameFormulas
             //Debug.Log("Difesa Utilizzata Res " + "Attaco " + attk.atk + " Difesa " + def.res);
             return attk.atk - def.res;
         }
-
         return 0;
     }
 }

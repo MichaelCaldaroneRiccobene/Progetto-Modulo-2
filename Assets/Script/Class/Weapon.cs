@@ -12,11 +12,11 @@ public class Weapon
         Magical = 2,
     }
 
-    [SerializeField] private string _name;
-    public string name // Inserisce nome della Weapon
+    [SerializeField] private string name;
+    public string Name // Inserisce nome della Weapon
     {
-        get => _name;
-        set => _name = value;
+        get => name;
+        set => name = value;
     }
 
     [SerializeField] private DamageType _damageType;
@@ -27,25 +27,24 @@ public class Weapon
     }
 
     [SerializeField] private Element _element;
-    public Element element //Inserisce l'element alla weapon
+    public Element Element //Inserisce l'Element alla Weapon
     {
         get => _element;
         set => _element = value;
     }
 
     [SerializeField] private Stats _bonusStats;
-    public Stats bonusStats // inserisce le statistische alla weapon
+    public Stats BonusStats // inserisce le statistische alla Weapon
     {
         get => _bonusStats;
         set => _bonusStats = value;
     }
 
-
     public Weapon(string nameWepon, DamageType damageType, Element element, Stats bonusStats) // THE Costuttore 
     {
-        _name = nameWepon;
-        _damageType = damageType;
-        _element = element;
-        _bonusStats = bonusStats;
+        this.Name = nameWepon;
+        this.damageType = damageType;
+        this.Element = element;
+        this.BonusStats = bonusStats;
     }
 }

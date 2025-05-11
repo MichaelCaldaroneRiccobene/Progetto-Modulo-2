@@ -13,7 +13,6 @@ public struct Stats
     public int aim;
     public int eva;
 
-
     public Stats(int atk, int def, int res, int spd, int crt, int aim, int eva) //THE Cotruttore
     {
         this.atk = atk;

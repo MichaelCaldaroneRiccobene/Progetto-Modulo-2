@@ -354,8 +354,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isPrestabilito: 0
   isAutomatic: 1
-  isSlow: 0
-  velocityBattle: 1
   heroA:
     _name: Demone
     _hp: 666
@@ -370,7 +368,7 @@ MonoBehaviour:
     _resistance: 1
     _weakness: 2
     _weapon:
-      _name: Lord
+      name: Lord
       _damageType: 1
       _element: 1
       _bonusStats:
@@ -395,7 +393,7 @@ MonoBehaviour:
     _resistance: 2
     _weakness: 3
     _weapon:
-      _name: Causto
+      name: Causto
       _damageType: 2
       _element: 2
       _bonusStats:
