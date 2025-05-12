@@ -352,8 +352,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9787605b56a620944baf85bd78cb0375, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isPrestabilito: 0
-  isAutomatic: 1
   heroA:
     _name: Demone
     _hp: 666
@@ -361,7 +359,7 @@ MonoBehaviour:
       atk: 66
       def: 33
       res: 25
-      spd: 27
+      spd: 38
       crt: 23
       aim: 36
       eva: 11

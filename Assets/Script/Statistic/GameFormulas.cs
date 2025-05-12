@@ -93,7 +93,7 @@ public static class GameFormulas
         if (risultatoAttaco < 0) { return 0; } 
 
         int risulAttck = Mathf.FloorToInt(risultatoAttaco);
-        //Si riporta il risultato dell'Attacco
+        //Si riporta il risultato dell'TurnForGoAttack
         return risulAttck; 
     }
 

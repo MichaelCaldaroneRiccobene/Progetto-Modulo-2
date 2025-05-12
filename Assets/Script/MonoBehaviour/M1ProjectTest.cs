@@ -5,11 +5,7 @@ using UnityEngine;
 
 public class M1ProjectTest : MonoBehaviour
 {
-    [Header("Condizioni")]// Decido le Condizioni Della Battaglia 
-    public bool isPrestabilito = true;
-    public bool isAutomatic = true;
-
-    [Header("Eroi")] // Creo i miei Hero
+    // Heroi per la battaglia
     public Hero heroA;
     public Hero heroB;
 
@@ -18,20 +14,12 @@ public class M1ProjectTest : MonoBehaviour
 
     private void Start()
     {
-        if (isPrestabilito) //Si mettono già i settaggi per le Wepons e Heros, si puo anche non fare
-        {
-            Weapon weponA = new Weapon("Thunger", Weapon.DamageType.Physical, Element.Fire, new Stats(22, 13, 4, 18, 13, 27, 17));
-            Weapon weponB = new Weapon("Loca", Weapon.DamageType.Magical, Element.Lightning, new Stats(22, 11, 4, 18, 13, 27, 17));
-
-            heroA = new Hero("Giggino", 150, new Stats(20, 13, 4, 20, 15, 27, 17), Element.Fire, Element.Ice, weponA);
-            heroB = new Hero("Jim", 150, new Stats(20, 13, 4, 18, 13, 27, 17), Element.Lightning, Element.Fire, weponB);
-        }
         // Si sommano le statistiche dell'Hero con le statistiche dell wepon
-        Stats statsCombo1 = Stats.Sum(heroA.BaseStats, heroA.Weapon.BonusStats); 
-        Stats statsCombo2 = Stats.Sum(heroB.BaseStats, heroB.Weapon.BonusStats);
+        Stats totStatsHeroA = CaculateStatsTot(heroA);
+        Stats totStatsHeroB = CaculateStatsTot(heroB);
 
         //Decide chi attacca per primo
-        AttackFirst(statsCombo1, statsCombo2, heroA, heroB);
+        AttackFirst(totStatsHeroA, totStatsHeroB, heroA, heroB);
 
         //Controllo Se uno dei due Hero hanno 0 Hp all'inizio
         if (!heroA.IsAlive() || !heroB.IsAlive())
@@ -42,57 +30,62 @@ public class M1ProjectTest : MonoBehaviour
 
     private void Update()
     {
-        // Avviene L'attacco in modo automatico o manuale
-        if (isAutomatic) { Attacco(hero1, hero2); } 
-        else if (Input.GetKeyDown(KeyCode.Space)) { Attacco(hero1, hero2); }
+        // Avviene L'attacco in modo automatico
+        TurnForGoAttack(hero1, hero2);
     }
 
-    void AttackFirst(Stats a, Stats b, Hero z, Hero y)
+    //Prende le statistiche Totali degli Hero e determina chi deve attaccare primo Assegnandoli rispettivamente hero1 e hero2
+    void AttackFirst(Stats heroAStats, Stats heroBStats, Hero heroA, Hero heroB)
     {
-        if (a.spd >= b.spd)
-        {
-            hero1 = z; hero2 = y;
-        }
-        else
-        {
-            hero1 = y; hero2 = z;
-        }
+        //Se heroA e superiore a heroB in spd Allora heroA sarà hero1 e heroB sarà hero2 o viceversa
+        if    (heroAStats.spd >= heroBStats.spd) {hero1 = heroA; hero2 = heroB; }
+        else  {hero1 = heroB; hero2 = heroA; }
     }
-    void Attacco(Hero a, Hero b)
-    {
-        // Inizio Attacco 
-        GoAttack(a, b);
 
-        // Secondo Attacco
-        GoAttack(b, a);
+    // Prende le statistiche del Hero e le statistiche dell'Arma del Hero e le somma
+    Stats CaculateStatsTot(Hero hero)
+    {
+        return Stats.Sum(hero.BaseStats, hero.Weapon.BonusStats);
     }
-    void GoAttack(Hero a, Hero b)
+
+    // Assegna l'ordine per attacare 
+    void TurnForGoAttack(Hero heroA, Hero heroB)
+    {
+        // Inizio Turno 
+        GoAttack(heroA, heroB);
+
+        // Secondo Turno
+        GoAttack(heroB, heroA);
+    }
+    void GoAttack(Hero heroA, Hero heroB)
     {
         // Controlla che tutti e due siano vivi prima di fare il codice 
-        if (a.IsAlive() && b.IsAlive())
+        if (heroA.IsAlive() && heroB.IsAlive())
         {
-            Debug.Log("Attaccante " + a.Name + " Attacca con elemento " + a.Weapon.Element + " Difensore " + b.Name + " Debolezza " + b.Weakness);
+            Debug.Log("Attaccante " + heroA.Name + " Attacca con elemento " + heroA.Weapon.Element + " Difensore " + heroB.Name + " Debolezza " + heroB.Weakness);
 
-            Stats statsCombo1 = Stats.Sum(a.BaseStats, a.Weapon.BonusStats);
-            Stats statsCombo2 = Stats.Sum(b.BaseStats, b.Weapon.BonusStats);
+            // Si sommano le statistiche dell'Hero con le statistiche dell wepon
+            Stats totStatsHeroA = CaculateStatsTot(heroA);
+            Stats totStatsHeroB = CaculateStatsTot(heroB);
 
+            Debug.Log("Attk Base " + heroA.BaseStats.atk + " Tot Attack " + totStatsHeroA.atk);
             //Solo se colpice da il danno
-            if (GameFormulas.HasHit(statsCombo1, statsCombo2))
+            if (GameFormulas.HasHit(totStatsHeroA, totStatsHeroB))
             {
                 //Calcola il danno base che L'attaccante dovra fare al Difensore
-                int danno = (GameFormulas.CalculateDamage(a, b));
+                int danno = (GameFormulas.CalculateDamage(heroA, heroB));
 
                 //Vediamo se il difensore è Debole o restistente
-                if (GameFormulas.HasElementAdvantage(a.Weapon.Element, b)) { Debug.Log("Weak"); }
-                if (GameFormulas.HasElementDisadvantage(a.Weapon.Element, b)) { Debug.Log("Resisten"); }
+                if (GameFormulas.HasElementAdvantage(heroA.Weapon.Element, heroB)) { Debug.Log("Weak"); }
+                if (GameFormulas.HasElementDisadvantage(heroA.Weapon.Element, heroB)) { Debug.Log("Resisten"); }
 
-                b.TakeDamage(danno);
-                Debug.Log("Danno Attaccante " + danno + " Vita difensore " + b.Hp);
+                heroB.TakeDamage(danno);
+                Debug.Log("Danno Attaccante " + danno + " Vita difensore " + heroB.Hp);
             }
             //Il difensore non ha più il danno quindi l'attaccante vince 
-            if (!b.IsAlive())
+            if (!heroB.IsAlive())
             {
-                Debug.Log(" Vincitore " + a.Name);
+                Debug.Log(" Vincitore " + heroA.Name);
                 enabled = false;
             }
         }
