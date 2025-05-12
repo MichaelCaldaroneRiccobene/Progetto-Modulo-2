@@ -13,7 +13,7 @@ OcclusionCullingSettings:
 --- !u!104 &2
 RenderSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 10
+  serializedVersion: 9
   m_Fog: 0
   m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   m_FogMode: 3
@@ -42,8 +42,8 @@ RenderSettings:
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 13
-  m_BakeOnSceneLoad: 0
+  serializedVersion: 12
+  m_GIWorkflowMode: 1
   m_GISettings:
     serializedVersion: 2
     m_BounceScale: 1
@@ -66,6 +66,9 @@ LightmapSettings:
     m_LightmapParameters: {fileID: 0}
     m_LightmapsBakeMode: 1
     m_TextureCompression: 1
+    m_FinalGather: 0
+    m_FinalGatherFiltering: 1
+    m_FinalGatherRayCount: 256
     m_ReflectionCompression: 2
     m_MixedBakeMode: 2
     m_BakeBackend: 1
@@ -297,63 +300,59 @@ MonoBehaviour:
   m_GameObject: {fileID: 639309004}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3eeda3a812958b4499a37b21aa97d2fd, type: 3}
+  m_Script: {fileID: 11500000, guid: 9787605b56a620944baf85bd78cb0375, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isPrestabilito: 0
-  isAutomatic: 1
-  isSlow: 0
-  velocityBattle: 1
   heroA:
-    _name: Louds
-    _hp: 1000
+    _name: Demon
+    _hp: 666
     _baseStats:
-      atk: 46
-      def: 46
-      res: 45
-      spd: 41
-      crt: 48
-      aim: 45
-      eva: 20
+      atk: 60
+      def: 32
+      res: 31
+      spd: 36
+      crt: 35
+      aim: 68
+      eva: 34
     _resistance: 1
     _weakness: 2
-    _wepon:
-      _name: Loco
+    _weapon:
+      name: Lord
       _damageType: 1
       _element: 1
       _bonusStats:
-        atk: 46
-        def: 45
-        res: 47
-        spd: 42
-        crt: 45
-        aim: 45
-        eva: 20
+        atk: 39
+        def: 30
+        res: 31
+        spd: 35
+        crt: 34
+        aim: 49
+        eva: 30
   heroB:
-    _name: Polis
-    _hp: 1000
+    _name: Olo
+    _hp: 700
     _baseStats:
-      atk: 50
-      def: 41
-      res: 48
-      spd: 46
-      crt: 45
-      aim: 43
-      eva: 20
-    _resistance: 2
-    _weakness: 3
-    _wepon:
-      _name: ioop
+      atk: 59
+      def: 30
+      res: 31
+      spd: 39
+      crt: 38
+      aim: 68
+      eva: 32
+    _resistance: 3
+    _weakness: 1
+    _weapon:
+      name: Caust
       _damageType: 2
       _element: 3
       _bonusStats:
-        atk: 52
-        def: 41
-        res: 35
-        spd: 46
-        crt: 43
-        aim: 52
-        eva: 20
+        atk: 60
+        def: 32
+        res: 31
+        spd: 39
+        crt: 39
+        aim: 50
+        eva: 35
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
