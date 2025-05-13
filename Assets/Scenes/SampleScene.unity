@@ -308,104 +308,78 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1931914488
-GameObject:
+--- !u!1001 &2671474002257224861
+PrefabInstance:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1931914489}
-  - component: {fileID: 1931914490}
-  m_Layer: 0
-  m_Name: Esercizio
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1931914489
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1931914488}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.5428112, y: -2.2567034, z: 0.030516637}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1931914490
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1931914488}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9787605b56a620944baf85bd78cb0375, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  heroA:
-    _name: Demone
-    _hp: 666
-    _baseStats:
-      atk: 66
-      def: 33
-      res: 25
-      spd: 38
-      crt: 23
-      aim: 36
-      eva: 11
-    _resistance: 1
-    _weakness: 2
-    _weapon:
-      name: Lord
-      _damageType: 1
-      _element: 1
-      _bonusStats:
-        atk: 33
-        def: 11
-        res: 24
-        spd: 27
-        crt: 25
-        aim: 38
-        eva: 13
-  heroB:
-    _name: Olo
-    _hp: 700
-    _baseStats:
-      atk: 39
-      def: 26
-      res: 28
-      spd: 23
-      crt: 27
-      aim: 45
-      eva: 14
-    _resistance: 2
-    _weakness: 3
-    _weapon:
-      name: Causto
-      _damageType: 2
-      _element: 2
-      _bonusStats:
-        atk: 30
-        def: 21
-        res: 29
-        spd: 23
-        crt: 22
-        aim: 45
-        eva: 14
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5778143844005772281, guid: 5cfcca658e53d4e4ebded786b8f8ac4c,
+        type: 3}
+      propertyPath: m_Name
+      value: Esercizio
+      objectReference: {fileID: 0}
+    - target: {fileID: 7055270947289826407, guid: 5cfcca658e53d4e4ebded786b8f8ac4c,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2.5428112
+      objectReference: {fileID: 0}
+    - target: {fileID: 7055270947289826407, guid: 5cfcca658e53d4e4ebded786b8f8ac4c,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.2567034
+      objectReference: {fileID: 0}
+    - target: {fileID: 7055270947289826407, guid: 5cfcca658e53d4e4ebded786b8f8ac4c,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.030516637
+      objectReference: {fileID: 0}
+    - target: {fileID: 7055270947289826407, guid: 5cfcca658e53d4e4ebded786b8f8ac4c,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7055270947289826407, guid: 5cfcca658e53d4e4ebded786b8f8ac4c,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7055270947289826407, guid: 5cfcca658e53d4e4ebded786b8f8ac4c,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7055270947289826407, guid: 5cfcca658e53d4e4ebded786b8f8ac4c,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7055270947289826407, guid: 5cfcca658e53d4e4ebded786b8f8ac4c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7055270947289826407, guid: 5cfcca658e53d4e4ebded786b8f8ac4c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7055270947289826407, guid: 5cfcca658e53d4e4ebded786b8f8ac4c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5cfcca658e53d4e4ebded786b8f8ac4c, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 330585546}
   - {fileID: 832575519}
-  - {fileID: 1931914489}
+  - {fileID: 2671474002257224861}

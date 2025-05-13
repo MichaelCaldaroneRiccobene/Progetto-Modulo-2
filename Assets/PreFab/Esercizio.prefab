@@ -1,0 +1,96 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5778143844005772281
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7055270947289826407}
+  - component: {fileID: 2270151888354205223}
+  m_Layer: 0
+  m_Name: Esercizio
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7055270947289826407
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5778143844005772281}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.5428112, y: -2.2567034, z: 0.030516637}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2270151888354205223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5778143844005772281}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9787605b56a620944baf85bd78cb0375, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  heroA:
+    _name: Demone
+    _hp: 666
+    _baseStats:
+      atk: 66
+      def: 33
+      res: 25
+      spd: 38
+      crt: 23
+      aim: 36
+      eva: 11
+    _resistance: 1
+    _weakness: 2
+    _weapon:
+      name: Lord
+      _damageType: 1
+      _element: 1
+      _bonusStats:
+        atk: 33
+        def: 11
+        res: 24
+        spd: 27
+        crt: 25
+        aim: 38
+        eva: 13
+  heroB:
+    _name: Olo
+    _hp: 700
+    _baseStats:
+      atk: 39
+      def: 26
+      res: 28
+      spd: 23
+      crt: 27
+      aim: 45
+      eva: 14
+    _resistance: 2
+    _weakness: 3
+    _weapon:
+      name: Causto
+      _damageType: 2
+      _element: 2
+      _bonusStats:
+        atk: 30
+        def: 21
+        res: 29
+        spd: 23
+        crt: 22
+        aim: 45
+        eva: 14
